@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VSCode Style Editor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Python'da Maʼlumot Turlari (Data Types) Python tilida har bir qiymat ma’lum bir data type ga ega. Quyida Pythonʼdagi asosiy 11 ta data type va ularning nomi (title) hamda tushuntirishi keltirilgan:</div>
+            <div id="editor" style="width: 100%; height: 2250px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">Python'dagi <span style="color: yellow;">List (ro‘yxat)</span> va uning barcha asosiy metodlari</div>
+            <div id="list" style="width: 100%; height: 2350px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 BO‘LIM: Python <span style="color: yellow;">Dictionary (lug‘at)</span> va UNGA TEGISHLI BARCHA METODLAR</div>
+            <div id="dict" style="width: 100%; height: 2280px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 BO‘LIM: Python <span style="color: yellow;">String (matnlar)</span> va UNGA TEGISHLI BARCHA METODLAR</div>
+            <div id="string" style="width: 100%; height: 7250px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 BO‘LIM: Python <span style="color: yellow;">Tuple (kortaj)</span> va UNGA TEGISHLI BARCHA METODLAR</div>
+            <div id="tuple" style="width: 100%; height: 480px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 BO‘LIM: Python <span style="color: yellow;">Set (to‘plam)</span> va UNGA TEGISHLI BARCHA METODLAR</div>
+            <div id="set" style="width: 100%; height: 3550px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 BO‘LIM: Python <span style="color: yellow;">Frozenset</span> va UNGA TEGISHLI BARCHA METODLAR</div>
+            <div id="frozenset" style="width: 100%; height: 3380px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">butun sonlar (integer)</span></div>
+            <div id="int" style="width: 100%; height: 570px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">float — o‘nlik sonlar</span></div>
+            <div id="float" style="width: 100%; height: 500px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">complex — kompleks sonlar (a + bj)</span></div>
+            <div id="complex" style="width: 100%; height: 410px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">range (sonlar oralig‘i)</span></div>
+            <div id="range" style="width: 100%; height: 410px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">bool (mantiqiy qiymat)</span></div>
+            <div id="bool" style="width: 100%; height: 370px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;"> bytes (o‘zgarmas baytlar ketma-ketligi)</span></div>
+            <div id="bytes" style="width: 100%; height: 970px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;"> bytearray (o‘zgaruvchan baytlar ketma-ketligi)</span></div>
+            <div id="bytearray" style="width: 100%; height: 880px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;"> memoryview (xotiradagi obyektni ko‘rish)</span></div>
+            <div id="memoryview" style="width: 100%; height: 600px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">Arifmetika</span></div>
+            <div id="math" style="width: 100%; height: 2230px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">Shart operatorlari</span></div>
+            <div id="shart" style="width: 100%; height: 2330px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">Funksiyalar</span></div>
+            <div id="def" style="width: 100%; height: 2470px;"></div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="text-center" style="background-color: black; color: white; padding-top: 10px; padding-bottom: 10px; font-weight: bold; font-size: 26px;">📘 Pythonda <span style="color: yellow;">sikllar (takrorlanuvchi jarayonlar) mavzusi</span></div>
+            <div id="sikl" style="width: 100%; height: 3650px;"></div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
+<script>
+require.config({
+  paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs' }
+});
+require(['vs/editor/editor.main'], function () {
+  function createEditor(containerId, filePath) {
+    fetch(filePath)
+      .then(response => response.text())
+      .then(code => {
+        const editor = monaco.editor.create(document.getElementById(containerId), {
+          value: code,
+          language: 'python',
+          theme: 'vs-dark',
+          fontSize: 16,
+          lineHeight: 24,
+          automaticLayout: true,
+          readOnly: true,
+          contextmenu: false,
+          minimap: { enabled: false },
+          scrollbar: {
+            vertical: 'hidden',
+            horizontal: 'hidden',
+            handleMouseWheel: false,
+            alwaysConsumeMouseWheel: false
+          }
+        });
+        editor.onContextMenu(e => e.event.preventDefault());
+        editor.onKeyDown(e => {
+          const key = e.browserEvent.key.toLowerCase();
+          if (e.browserEvent.ctrlKey && ['c', 'x', 'v', 's', 'u', 'a'].includes(key)) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        });
+        editor.getDomNode().addEventListener('copy', e => {
+          e.clipboardData.setData('text/plain', '');
+          e.preventDefault();
+        });
+      });
+  }
+  createEditor('editor', 'python-lesson/template.py');
+  createEditor('list', 'python-lesson/list.py');
+  createEditor('dict', 'python-lesson/dict.py');
+  createEditor('string', 'python-lesson/string.py');
+  createEditor('tuple', 'python-lesson/tuple.py');
+  createEditor('set', 'python-lesson/set.py');
+  createEditor('frozenset', 'python-lesson/frozenset.py');
+  createEditor('int', 'python-lesson/int.py');
+  createEditor('float', 'python-lesson/float.py');
+  createEditor('math', 'python-lesson/math.py');
+  createEditor('shart', 'python-lesson/shart.py');
+  createEditor('def', 'python-lesson/def.py');
+  createEditor('sikl', 'python-lesson/sikl.py');
+  createEditor('complex', 'python-lesson/complex.py');
+  createEditor('range', 'python-lesson/range.py');
+  createEditor('bool', 'python-lesson/bool.py');
+  createEditor('bytes', 'python-lesson/bytes.py');
+  createEditor('bytearray', 'python-lesson/bytearray.py');
+  createEditor('memoryview', 'python-lesson/memoryview.py');
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && ['c', 'x', 'v', 's', 'u', 'a'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('copy', e => {
+    e.clipboardData.setData('text/plain', '');
+    e.preventDefault();
+  });
+});
+</script>
+</body>
+</html>
